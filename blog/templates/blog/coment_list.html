@@ -1,0 +1,21 @@
+{% block title %}
+    Comentarios
+{% endblock title %}
+
+{% block content_title %}
+    Lista de Comentarios
+{% endblock content_title %}
+
+{% block content %}
+    <a href="{% url 'blog:comentary_create' %}" class="btn btn-primary mb-3">Crear Comentario</a>
+    <ul class="list-group">
+        {% for comentary in comentarios %}
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ comentary.texto }}</h5> <!-- Cambié "title" a "texto" -->
+                    <small> Comentado el {{ comentary.fecha_creacion }}</small> <!-- Cambié "created_at" a "fecha_creacion" -->
+                </div>
+            </a>
+        {% endfor %}
+    </ul>
+{% endblock content %}

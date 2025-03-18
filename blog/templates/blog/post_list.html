@@ -1,0 +1,52 @@
+{% extends 'Main/base.html' %}
+{% block title %}
+  Publicaciones
+{% endblock title %}
+{% block content_title %}
+  Lista de Publicaciones
+{% endblock content_title %}
+
+{% block content %}
+    <a href="{% url 'blog:post_create' %}" class="btn btn-primary mb-3">Crear Publicación</a>
+
+    <form action="{% url 'blog:post_list' %}" method="get">
+      <input type="text" name="busqueda" placeholder="Buscar..." type="submit" 
+      class="form- control mb-3">
+    </form>
+
+             <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+          {% for post in posts %}
+            <div class="col">
+              <div class="card h-100 shadow-sm border-0 rounded-3 hover-card">
+                <div class="card-body">
+                  <a href="#" class="text-decoration-none">
+                    <h5 class="card-title fw-bold text-dark mb-3">{{ post.titulo }}</h5>
+                    <p class="card-text text-secondary mb-4">{{post.contenido}}</p>
+                    <div class="d-flex justify-content-between align-items-center">
+                      <small class="text-muted">
+                        <i class="bi bi-clock me-1"></i>Publicado el {{ post.fecha_publicacion }}
+                      </small>
+                      <span class="badge bg-primary rounded-pill px-3 py-2">Leer más</span>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+          </div>
+            
+        <!-- Para pantallas muy pequeñas, mostramos una versión alternativa como lista -->
+        <div class="d-md-none mt-4">
+          <ul class="list-group list-group-flush">
+            {% for post in posts %}
+              <li class="list-group-item px-0">
+                <a href="#" class="text-decoration-none">
+                  <h5 class="text-dark fw-bold mb-1">{{ post.titulo }}</h5>
+                  <p class="text-secondary mb-1 text-truncate">{{post.contenido}}</p>
+                  <small class="text-muted"><i class="bi bi-calendar me-1"></i>{{ post.fecha_publicacion }}</small>
+                </a>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+{% endblock content %}

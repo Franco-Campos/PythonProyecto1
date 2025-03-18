@@ -1,0 +1,23 @@
+{% block  %}
+    Categorias
+{% endblock  %}
+
+{% block content_title %}
+    Lista de Categorias
+{% endblock content_title %}
+
+{% block content %}
+    <a href="{% url 'blog:category_create' %}" class="btn btn-primary mb-3">Crear Categoria</a>
+    <ul class="list-group">
+        {% for categoria in categorias %}
+            <a href="#" class="list-group-item list-group-item-action">
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{ category.title }}</h5>
+                    <small> Categoria creada el {{ category.created_at }} </small>
+                </div>
+            </a>
+        {% endfor %}
+    </ul>
+{% endblock content %}<ul>
+
+</ul>
